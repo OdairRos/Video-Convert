@@ -30,7 +30,7 @@ elif tipo == '4' or tipo.upper( ) == 'OGV':
 elif tipo == '5' or tipo.upper() == 'WEBM':
     Video.write_videofile(NOME_ARQUIVO[0]+'.webm', codec=EXTENSION_VIDEOS['.wemb'])
 elif  tipo == '6' or tipo.upper() == 'MP3':
-    print('não terminado')
+    print('modificar')
     """
     mp3audio = 'resultado.mp3'
     VideoClip = VideoFileClip(Arquivo)
