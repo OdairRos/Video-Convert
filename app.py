@@ -1,32 +1,41 @@
-#import main
-
+#from Main import *
 
 import tkinter as tk
-from tkinter.constants import BOTH, BOTTOM, FLAT, LAST, LEFT, RAISED, RIGHT
+from tkinter.constants import BOTH, BOTTOM, FALSE, FLAT, LAST, LEFT, RAISED, RIGHT, HORIZONTAL
 import tkinter.ttk as ttk
+from tkinter import filedialog as fd
 
+
+#constantes
 LOGOIMG = 'C:IMG\Menu-imageLogoCropped.ppm'
 BUTTON_CONFIG = {'border': '5', 'relief': 'raised','fg': 'black','bg': '#ffffff', 'font': ('sans serif','13', 'bold' )}
-LABEL_CONFIG = {'fg': 'black','bg': '#ffffff', 'font': ('sans serif','13', 'bold' )}
+LABEL_CONFIG = {'fg': 'black','bg': '#ffffff', 'font': ('sans serif','12', 'italic' )}
+
+
 
 class App(object):
     def __init__(self):
-        self.Aplicativo = tk.Tk()
-        self.Aplicativo.title('PyConvert')
-        self.Aplicativo.geometry("700x400")
-        self.LOGO = tk.PhotoImage(file = LOGOIMG)
+        #Tkinter Contruindo tela
+        self.root = tk.Tk()
+        self.root.title('PyConvert')
+        self.root.geometry("800x500")
+        self.root.resizable(FALSE,FALSE)
+        self.root.configure(background='#ffffff')#385ce0
+        self.IMG = tk.PhotoImage(file = LOGOIMG)
 
-        self.frames = [tk.Frame(self.Aplicativo).pack() for i in range(0,5)]# Criando os Frames(locais para cada widget) e "adcionando" eles na tela com o metodo pack()
-        
-        self.LG = tk.Label(self.frames[0], image=self.LOGO, bg='#ffffff').pack()
+        self.LOGO = tk.Label(self.root, image=self.IMG, bg='#ffffff').place(x=250, y=0)
 
-        self.Entry = tk.Entry(self.frames[2], textvariable='odair').pack()
+        self.btnLocal = tk.Button(self.root, fg='black', bg='#ffffff',text='Escolher local do arquivo', command=fd.askopenfilename).place(x=340, y=150)
 
-        self.btnMP4 = tk.Button(self.frames[3], BUTTON_CONFIG, text='To MP4', command=None, padx=20).pack(side=LEFT,padx=5) 
-        self.btnAVI = tk.Button(self.frames[3], BUTTON_CONFIG, text='To AVI', command=None, padx=20).pack(side=LEFT,padx=5)
 
-        self.Aplicativo.configure(background='#ffffff')#385ce0
+        self.btnMP4 = tk.Button(self.root, BUTTON_CONFIG, text='To MP4 ', command=None, padx=20).place(x=50,y=250)
+        self.btnAVI = tk.Button(self.root, BUTTON_CONFIG, text='To AVI ', command=None, padx=20).place(x=183,y=250)
+        self.btnMKV = tk.Button(self.root, BUTTON_CONFIG, text='To MKV ', command=None, padx=20).place(x=310,y=250)
+        self.btnOGV = tk.Button(self.root, BUTTON_CONFIG, text='To OGV ', command=None, padx=20).place(x=450, y=250)
+        self.bntWEBM = tk.Button(self.root, BUTTON_CONFIG, text='To WEBM', command=None, padx=20).place(x=592, y=250)
 
-        self.Aplicativo.mainloop()
+        #self.progress = ttk.Progressbar(self.root, orient = HORIZONTAL,length = 500, mode = 'determinate').place(x=140,y=370)
+        self.root.mainloop()
 
+    
 app = App()
