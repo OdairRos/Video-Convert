@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter.constants import *
 import tkinter.ttk as ttk
-from tkinter import filedialog as fd
+from tkinter import DoubleVar, Variable, filedialog as fd
 from moviepy.editor import *
 from os import *
+import time as tm
 
 
 
@@ -54,7 +55,7 @@ class App(object):
         self.btnOGV = tk.Button(self.root, BUTTON_CONFIG, text='To OGV ', command=lambda: self.ConvertVideo('.ogv'), padx=20).place(x=450, y=250)
         self.bntWEBM = tk.Button(self.root, BUTTON_CONFIG, text='To WEBM', command=lambda: self.ConvertVideo('.webm'), padx=20).place(x=592, y=250)
         
-        #self.progress = ttk.Progressbar(self.root, orient = HORIZONTAL,length = 500, mode = 'determinate').place(x=140,y=370)
+        
         self.root.mainloop()
         
     def ConvertVideo(self, tipo):
@@ -66,11 +67,12 @@ class App(object):
         except:
             print('Arquivo não encontrado, Verefique se o local esta correto.')
 
-        print(Local)
-        self.VideoClipe.write_videofile(self.NOME_ARQUIVO[0]+tipo, codec=f'{EXTENSION_VIDEOS[tipo]}')
+        self.VideoClipe.write_videofile(self.NOME_ARQUIVO[0]+tipo, codec=f'{EXTENSION_VIDEOS[tipo]}',logger=None )
         self.VideoClipe.close()
         self.AudioClipe.close()
 
+        self.telaConclusao = tk.Tk()
+        self.MsgConclusao = tk.Label(self.telaConclusao, text="Conversão concluida", fg='green', font=('sans serif','12', 'italic' )).pack()
     def ConvertVideoToAudio(self, tipo='.mp3'):
         global Local
         try:   
@@ -83,6 +85,10 @@ class App(object):
         self.AudioClipe.write_audiofile(f'{self.NOME_ARQUIVO[0]}{tipo}')
         self.VideoClipe.close()
         self.AudioClipe.close()
+        
+        self.telaConclusao = tk.Tk()
+        self.MsgConclusao = tk.Label(self.telaConclusao, text="Conversão concluida,salvo na pasta origem", fg='green', font=('sans serif','12', 'italic' )).pack()
+    
 
 if __name__ == '__main__':
         pass
