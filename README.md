@@ -15,5 +15,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [MoviePy](https://zulko.github.io/moviepy/)
 ### ✅ Autor
 
-Odair J. Rosario<br>
+Odair J. Rosario.<br>
 odairJRosario66@gmail.com
